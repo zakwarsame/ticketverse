@@ -1,18 +1,17 @@
 {
   "name": "ticketverse",
   "version": "1.0.0",
-  "description": "",
+  "description": "Support Ticket App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zakwarsame/ticketverse.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Zak Warsame",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/zakwarsame/ticketverse/issues"
   },
