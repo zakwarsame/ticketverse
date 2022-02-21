@@ -4,7 +4,8 @@
   "description": "Support Ticket App",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/zakwarsame/ticketverse/issues"
   },
-  "homepage": "https://github.com/zakwarsame/ticketverse#readme"
+  "homepage": "https://github.com/zakwarsame/ticketverse#readme",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
