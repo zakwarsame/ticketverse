@@ -1,9 +1,9 @@
-const express = require("express");
-const colors = require("colors");
-const dotenv = require("dotenv").config();
-const userRoutes = require("./routes/users");
-const { errorHandler } = require("./middleware/errorMiddleware");
-const connectDB = require("./config/db");
+const express = require('express');
+const colors = require('colors');
+const dotenv = require('dotenv').config();
+const userRoutes = require('./routes/users');
+const { errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
 const PORT = process.env.PORT || 8000;
 
 // Connect to database
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 // Routes
 
-app.use("/api/users", userRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(errorHandler);
 

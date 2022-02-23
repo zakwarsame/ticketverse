@@ -1,3 +1,6 @@
+const bcrypt = require("bcryptjs");
+const User = require("../models/userModel");
+
 /**
  *
  * @param {*} req
@@ -7,14 +10,52 @@
  * @access Public
  */
 
-const registerUser = (req, res) => {
+const registerUser = (req, res, next) => {
   const { name, email, password } = req.body;
 
+  // if any of the fields are missing, send error
   if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please include all fields");
   }
-  res.send("Register Route");
+
+  // Find if user exists already
+  User.findOne({ email })
+    .then((userExists) => {
+      if (userExists) {
+        res.status(400);
+        throw new Error("User already exists");
+      }
+
+      // Hash password
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+
+
+      // save the user inside the db
+      User.create({
+        name,
+        email,
+        password: hashedPassword,
+      })
+        .then((newUser) => {
+
+          // set status code 201 to indicate creation of resource
+          // 
+          if (newUser) {
+            res.status(201).json({
+              _id: user._id,
+              name: user.name,
+              email: user.email,
+            });
+          } else {
+            res.status(400);
+            throw new Error("Invalid user data");
+          }
+        })
+        .catch(next);
+    })
+    .catch(next);
 };
 
 /**
