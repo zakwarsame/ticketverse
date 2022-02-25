@@ -111,9 +111,13 @@ const loginUser = (req, res, next) => {
 
 const getMe = (req, res, next) => {
 
+  const user = {
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name
+  }
 
-  res.send('me')
-
+  res.status(200).json(user);
 };
 
 // Generate token
@@ -126,5 +130,5 @@ const generateToken = (id) => {
 module.exports = {
   registerUser,
   loginUser,
-  getMe
+  getMe,
 };
