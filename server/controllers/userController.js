@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const User = require("../models/userModel");
 
 /**
@@ -37,13 +39,14 @@ const registerUser = (req, res, next) => {
         email,
         password: hashedPassword,
       })
-        .then((newUser) => {
+        .then((user) => {
           // set status code 201 to indicate creation of resource
-          if (newUser) {
+          if (user) {
             res.status(201).json({
               _id: user._id,
               name: user.name,
               email: user.email,
+              token: generateToken(user._id),
             });
           } else {
             res.status(400);
@@ -78,6 +81,7 @@ const loginUser = (req, res, next) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                token: generateToken(user._id),
               });
             } else {
               // user exists but wrong password
@@ -96,7 +100,31 @@ const loginUser = (req, res, next) => {
     .catch(next);
 };
 
+/**
+ *
+ * @param {*} req
+ * @param {*} res
+ * @desc  get current user
+ * @route /api/users/me
+ * @access Private
+ */
+
+const getMe = (req, res, next) => {
+
+
+  res.send('me')
+
+};
+
+// Generate token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getMe
 };
