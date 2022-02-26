@@ -1,5 +1,5 @@
-const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 
 /**
  *
@@ -31,7 +31,6 @@ const registerUser = (req, res, next) => {
       const salt = bcrypt.genSaltSync(10);
       const hashedPassword = bcrypt.hashSync(password, salt);
 
-
       // save the user inside the db
       User.create({
         name,
@@ -39,9 +38,8 @@ const registerUser = (req, res, next) => {
         password: hashedPassword,
       })
         .then((newUser) => {
-
           // set status code 201 to indicate creation of resource
-          // 
+          //
           if (newUser) {
             res.status(201).json({
               _id: user._id,
