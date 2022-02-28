@@ -4,6 +4,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -15,11 +16,10 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { user, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.auth
-  );  
-
+  );
 
   useEffect(() => {
     if (isError) {
@@ -33,7 +33,6 @@ const Login = () => {
 
     dispatch(reset());
   }, [isError, isSuccess, user, message, navigate, dispatch]);
-
 
   const handleFormChange = (e) => {
     setFormData((prev) => ({
@@ -52,6 +51,10 @@ const Login = () => {
 
     dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

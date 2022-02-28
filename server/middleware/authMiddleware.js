@@ -14,13 +14,11 @@ const protect = (req, res, next) => {
       User.findById(decoded.id)
         .select("-password")
         .then((user) => {
-          console.log(user);
           req.user = user;
           next();
         })
         .catch(next);
     } catch (error) {
-      console.log(error);
       res.status(401);
       throw new Error("Not authorized");
     }
