@@ -56,9 +56,12 @@ const NewTicket = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder='Description'
+              placeholder="Description"
               className="form-control"
             ></textarea>
+          </div>
+          <div className="form-group">
+            <button className="btn btn-block">Submit</button>
           </div>
         </form>
       </section>
