@@ -29,4 +29,4 @@ const NoteSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Mote", NoteSchema);
+module.exports = mongoose.model("Note", NoteSchema);
