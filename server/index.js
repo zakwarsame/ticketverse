@@ -22,7 +22,7 @@ app.use("/api/tickets", ticketRoutes);
 
 
 
-// ---- Hosting ---
+// ---- Deployment ---
 // Serve Frontend
 if (process.env.NODE_ENV === "production") {
   // Set build folder as static
