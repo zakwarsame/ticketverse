@@ -62,7 +62,7 @@ const NewTicket = () => {
         </div>
         <div className="form-group">
           <label htmlFor="email">Customer Email</label>
-          <input type="text" className="form-control" value={email} readOnly />
+          <input type="text" className="form-control" value={email} readOnly disabled/>
         </div>
         <form onSubmit={handleFormSubmit}>
           <div className="form-group">
