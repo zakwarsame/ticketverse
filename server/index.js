@@ -20,8 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users", userRoutes);
 app.use("/api/tickets", ticketRoutes);
 
-
-
 // ---- Deployment ---
 // Serve Frontend
 if (process.env.NODE_ENV === "production") {
@@ -29,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.get("*", (req, res) =>
-    res.sendFile(__dirname, "../", "client", "build", "index.html")
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"))
   );
 } else {
   app.get("/", (req, res) => {
