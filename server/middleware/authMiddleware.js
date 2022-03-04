@@ -10,7 +10,7 @@ const protect = (req, res, next) => {
       token = authHeader.split(" ")[1];
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      // Get user from token
+      // Get user from token using decoded object and searching db. Remove the hashed password from the response
       User.findById(decoded.id)
         .select("-password")
         .then((user) => {

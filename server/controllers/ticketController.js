@@ -39,7 +39,6 @@ const getSingleTicket = (req, res, next) => {
         res.status(401);
         throw new Error("User not found");
       }
-
       Ticket.findById(req.params.id)
         .then((ticket) => {
           if (!ticket) {

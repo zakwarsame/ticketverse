@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // --- Routes ---
 app.use("/api/users", userRoutes);
-app.use("/api/tickets", ticketRoutes);
+app.use("/api/tickets/", ticketRoutes);
 
 // ---- Deployment ---
 // Serve Frontend
